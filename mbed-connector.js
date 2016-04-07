@@ -1,5 +1,5 @@
 module.exports = function(RED) {
-    function LowerCaseNode(config) {
+    function Connector(config) {
         RED.nodes.createNode(this,config);
         var node = this;
         this.on('input', function(msg) {
@@ -7,5 +7,5 @@ module.exports = function(RED) {
             node.send(msg);
         });
     }
-    RED.nodes.registerType("mbed-connector",LowerCaseNode);
+    RED.nodes.registerType("mbed-connector",Connector);
 }
