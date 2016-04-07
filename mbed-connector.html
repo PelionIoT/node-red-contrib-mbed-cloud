@@ -1,26 +1,39 @@
 <script type="text/javascript">
     RED.nodes.registerType('mbed-connector',{
-        category: 'function',
+        category: 'IoT Service',
         color: '#a6bbcf',
         defaults: {
-            name: {value:""}
+            name: {value:""},
+            host: {value:"https://api.connector.mbed.com",required:true},
+            port: {value:"80",required:true,validate:RED.validators.number()},
+            apiversion: {value:"v2"}
         },
         inputs:1,
         outputs:1,
-        icon: "file.png",
+        icon: "bridge-dash.png",
         label: function() {
-            return this.name||"mbed-connector";
+            return this.name||"mbed-cloud";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="mbed-connector">
+<script type="text/x-red" data-template-name="mbed-cloud">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
+    <div class="form-row">
+        <label for="node-input-host"><i class="icon-tag"></i> Host</label>
+        <input type="text" id="node-input-host" placeholder="Host">
+    </div>
+    <div class="form-row">
+        <label for="node-input-port"><i class="icon-tag"></i> Port</label>
+        <input type="text" id="node-input-port" placeholder="Port">
+        <label for="node-input-apiversion"><i class="icon-tag"></i> API Version</label>
+        <input type="text" id="node-input-apiversion" placeholder="API Version">
+    </div>
 </script>
 
-<script type="text/x-red" data-help-name="mbed-connector">
+<script type="text/x-red" data-help-name="mbed-cloud">
     <p>A simple node that converts the message payloads into all lower-case characters</p>
 </script>

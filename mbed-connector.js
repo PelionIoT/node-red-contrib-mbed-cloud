@@ -1,4 +1,6 @@
 module.exports = function(RED) {
+	//var connector = require("mbed-connector-api")
+
     function Connector(config) {
         RED.nodes.createNode(this,config);
         var node = this;
@@ -7,5 +9,5 @@ module.exports = function(RED) {
             node.send(msg);
         });
     }
-    RED.nodes.registerType("mbed-connector",Connector);
+    RED.nodes.registerType("mbed-cloud",Connector);
 }
