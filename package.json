@@ -1,0 +1,14 @@
+{
+    "name"         : "node-red-contrib-mbed-connector",
+    "version"      : "0.0.1",
+    "description"  : "A sample node for node-red",
+    "dependencies": {
+        "mbed-connector-api"
+    },
+    "keywords": [ "node-red","mbed","ARM mbed", "mbed connector", "mbed cloud", "build awesome", "mbed client" ],
+    "node-red"     : {
+        "nodes": {
+            "mbed-connector": "mbed-connector.js"
+        }
+    }
+}
