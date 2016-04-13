@@ -3,15 +3,18 @@
         category: 'IoT Service',
         color: '#a6bbcf',
         defaults: {
-            apikey:{value:"",required:true, 
-                    validate:function(v){
-                        // TODO: add validator for API key here
-                        return true}
-                    },
             name: {value:""},
             host: {value:"https://api.connector.mbed.com",required:true},
             port: {value:"80",required:true,validate:RED.validators.number()},
             apiversion: {value:"v2"}
+        },
+        credentials: {
+            apikey:{type:"text",required:true,
+                    validate:function(v){
+                        // TODO: add validator for API key here
+                        return true;
+                        }
+                    },
         },
         inputs:1,
         outputs:1,

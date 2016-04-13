@@ -4,6 +4,7 @@ module.exports = function(RED) {
     function Connector(config) {
         RED.nodes.createNode(this,config);
         var node = this;
+        var apikey = this.credentials.apikey;
         this.on('input', function(msg) {
             // handle input
             this.log(msg);
@@ -18,5 +19,9 @@ module.exports = function(RED) {
 			// tidy up any state left behind
         });
     }
-    RED.nodes.registerType("mbed-cloud",Connector);
+    RED.nodes.registerType("mbed-cloud",Connector,{
+		credentials:{
+			apikey:{type:"text"}
+		}
+    });
 }
