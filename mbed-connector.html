@@ -3,6 +3,11 @@
         category: 'IoT Service',
         color: '#a6bbcf',
         defaults: {
+            apikey:{value:"",required:true, 
+                    validate:function(v){
+                        // TODO: add validator for API key here
+                        return true}
+                    },
             name: {value:""},
             host: {value:"https://api.connector.mbed.com",required:true},
             port: {value:"80",required:true,validate:RED.validators.number()},
@@ -19,21 +24,28 @@
 
 <script type="text/x-red" data-template-name="mbed-cloud">
     <div class="form-row">
+        <label for="node-input-apikey"><i class="icon-tag"></i> API Key</label>
+        <input type="text" id="node-input-apikey" placeholder="API Key">
+    </div>
+    <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
     <div class="form-row">
         <label for="node-input-host"><i class="icon-tag"></i> Host</label>
         <input type="text" id="node-input-host" placeholder="Host">
+        <label for="node-input-port"><i class="icon-tag"></i> Port</label>
+        <input type="number" id="node-input-port" placeholder="Port">
     </div>
     <div class="form-row">
-        <label for="node-input-port"><i class="icon-tag"></i> Port</label>
-        <input type="text" id="node-input-port" placeholder="Port">
         <label for="node-input-apiversion"><i class="icon-tag"></i> API Version</label>
-        <input type="text" id="node-input-apiversion" placeholder="API Version">
+        <select type="text" id="node-input-apiversion" placeholder="API Version">
+            <option value="v2">V2</option>
+        </select>
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="mbed-cloud">
-    <p>A simple node that converts the message payloads into all lower-case characters</p>
+    <p>This is a simple node that impliments the mbed-connector-api in nodeRed.</p>
+    <p>You can send data to a specific endpoint as input, or receive data from a endpoint as output.</p>
 </script>
