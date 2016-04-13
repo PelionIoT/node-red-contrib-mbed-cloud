@@ -5,6 +5,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
         var node = this;
         var apikey = this.credentials.apikey;
+        this.status({fill:"red",shape:"ring",text:"disconnected"});
         this.on('input', function(msg) {
             // handle input
             this.log(msg);
