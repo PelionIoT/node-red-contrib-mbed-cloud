@@ -8,7 +8,8 @@
     "keywords": [ "node-red","mbed","ARM mbed", "mbed connector", "mbed cloud", "build awesome", "mbed client" ],
     "node-red"     : {
         "nodes": {
-            "mbed-connector": "mbed-connector.js"
+            "mbed-connector": "mbed-connector.js",
+            "mbed-connector-in": "mbed-connector-in.js"
         }
     }
 }
