@@ -1,6 +1,6 @@
 <script type="text/javascript">
     RED.nodes.registerType('mbed-cloud',{
-        category: 'IoT Service',
+        category: 'config',
         color: '#a6bbcf',
         defaults: {
             name: {value:""},
@@ -16,8 +16,8 @@
                         }
                     },
         },
-        inputs:1,
-        outputs:1,
+        inputs:0,
+        outputs:0,
         icon: "bridge-dash.png",
         color:"#00AED9",
         label: function() {
@@ -28,22 +28,23 @@
 
 <script type="text/x-red" data-template-name="mbed-cloud">
     <div class="form-row">
-        <label for="node-input-apikey"><i class="icon-tag"></i> API Key</label>
-        <input type="text" id="node-input-apikey" placeholder="API Key">
+        <label for="node-config-input-apikey"><i class="icon-tag"></i> API Key</label>
+        <input type="text" id="node-config-input-apikey" placeholder="API Key">
+    </div>
+    // TODO: add section for Longpolling vs Callback URL, currently default to longpolling. 
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
     </div>
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
+        <label for="node-config-input-host"><i class="icon-tag"></i> Host</label>
+        <input type="text" id="node-config-input-host" placeholder="Host">
+        <label for="node-config-input-port"><i class="icon-tag"></i> Port</label>
+        <input type="number" id="node-config-input-port" placeholder="Port">
     </div>
     <div class="form-row">
-        <label for="node-input-host"><i class="icon-tag"></i> Host</label>
-        <input type="text" id="node-input-host" placeholder="Host">
-        <label for="node-input-port"><i class="icon-tag"></i> Port</label>
-        <input type="number" id="node-input-port" placeholder="Port">
-    </div>
-    <div class="form-row">
-        <label for="node-input-apiversion"><i class="icon-tag"></i> API Version</label>
-        <select type="text" id="node-input-apiversion" placeholder="API Version">
+        <label for="node-config-input-apiversion"><i class="icon-tag"></i> API Version</label>
+        <select type="text" id="node-config-input-apiversion" placeholder="API Version">
             <option value="v2">V2</option>
         </select>
     </div>
