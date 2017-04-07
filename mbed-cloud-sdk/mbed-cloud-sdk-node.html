@@ -1,0 +1,124 @@
+<script type="text/javascript">
+    RED.nodes.registerType('list-devices', {
+        category: 'mbed_cloud_sdk',
+        defaults: {
+            server: {value: "", type: "mbed-cloud-sdk-config"},
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bridge-dash.png",
+        color:"#00AED9",
+        label: function() {
+            return this.name || "list-devices";
+        }
+    });
+
+    RED.nodes.registerType('subscribe', {
+        category: 'mbed_cloud_sdk',
+        defaults: {
+            server: {value: "", type: "mbed-cloud-sdk-config"},
+            path: {value: "", required: true}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "feed.png",
+        color:"#00AED9",
+        label: function() {
+            return this.name || "subscribe";
+        }
+    });
+
+    RED.nodes.registerType('send', {
+        category: 'mbed_cloud_sdk',
+        defaults: {
+            server: {value: "", type: "mbed-cloud-sdk-config"},
+            path: {value: "", required: true},
+            method: {value: "", required: true}
+        },
+        inputs: 1,
+        outputs: 0,
+        icon: "inject.png",
+        color:"#00AED9",
+        label: function() {
+            return this.name || "send";
+        }
+    });
+
+    RED.nodes.registerType('get', {
+        category: 'mbed_cloud_sdk',
+        defaults: {
+            server: {value: "", type: "mbed-cloud-sdk-config"},
+            path: {value: "", required: true}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "envelope.png",
+        color:"#00AED9",
+        label: function() {
+            return this.name || "get";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="list-devices">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> API</label>
+        <input type="text" id="node-input-server" placeholder="API">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="list-devices">
+    <p>This node allows you to do something with mbed cloud sdk</p>
+</script>
+
+<script type="text/x-red" data-template-name="subscribe">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> API</label>
+        <input type="text" id="node-input-server" placeholder="API">
+    </div>
+    <div class="form-row">
+        <label for="node-input-path"><i class="icon-tag"></i> Resource</label>
+        <input type="text" id="node-input-path" placeholder="Resource Path">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="subscribe">
+    <p>Subscribe to a resource from mbed cloud</p>
+</script>
+
+<script type="text/x-red" data-template-name="send">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> API</label>
+        <input type="text" id="node-input-server" placeholder="API">
+    </div>
+    <div class="form-row">
+        <label for="node-input-path"><i class="icon-tag"></i> Resource</label>
+        <input type="text" id="node-input-path" placeholder="Resource Path">
+    </div>
+    <div class="form-row">
+        <label for="node-input-method"><i class="icon-tag"></i> Method</label>
+        <select id="node-input-method">
+          <option value="put">Set (PUT)</option>
+          <option value="post">Execute (POST)</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="send">
+    <p>Send a resource to mbed cloud</p>
+</script>
+
+<script type="text/x-red" data-template-name="get">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> API</label>
+        <input type="text" id="node-input-server" placeholder="API">
+    </div>
+    <div class="form-row">
+        <label for="node-input-path"><i class="icon-tag"></i> Resource</label>
+        <input type="text" id="node-input-path" placeholder="Resource Path">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="get">
+    <p>Get a resource from mbed cloud</p>
+</script>

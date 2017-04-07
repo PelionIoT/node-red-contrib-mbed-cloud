@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    RED.nodes.registerType('mbed-cloud-sdk-config',{
+        category: 'config',
+        defaults: {
+            name: {value: ""},
+        },
+        credentials: {
+            apikey: {type: "text"},
+        },
+        label: function() {
+            return this.name || "mbed-cloud-sdk-config";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="mbed-cloud-sdk-config">
+    <div class="form-row">
+        <label for="node-config-input-apikey"><i class="icon-tag"></i> API Key</label>
+        <input type="text" id="node-config-input-apikey" placeholder="API Key">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="mbed-cloud-sdk-config">
+    <p>This is a simple node that impliments the mbed-cloud-sdk in nodeRed.</p>
+</script>

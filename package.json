@@ -1,15 +1,29 @@
 {
-    "name"         : "node-red-contrib-mbed-connector",
-    "version"      : "0.0.1",
-    "description"  : "A sample node for node-red",
-    "dependencies": {
-        "mbed-connector-api"
-    },
-    "keywords": [ "node-red","mbed","ARM mbed", "mbed connector", "mbed cloud", "build awesome", "mbed client" ],
-    "node-red"     : {
-        "nodes": {
-            "mbed-connector": "mbed-connector.js",
-            "mbed-connector-in": "mbed-connector-in.js"
-        }
-    }
+  "name": "node-red-contrib-mbed-cloud-sdk",
+  "version": "1.0.0",
+  "description": "Node-red implementation of the mbed cloud SDK library.",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Michael Ray",
+    "email": "michael.ray@arm.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ARMmbed/mbed-cloud-sdk-nodered.git"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.3",
+    "hbs": "~3.1.0",
+    "socket.io": "^1.4.5",
+    "mbed-cloud-sdk-javascript": "git+https://git@github.com/ARMMbed/mbed-cloud-sdk-javascript.git"
+  },
+  "keywords": [ "node-red" ],
+  "node-red"     : {
+      "nodes": {
+          "mbed-cloud-sdk-config": "mbed-cloud-sdk/mbed-cloud-sdk-node-config.js",
+          "mbed-cloud-sdk": "mbed-cloud-sdk/mbed-cloud-sdk-node.js"
+      }
+  }
 }
