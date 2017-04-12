@@ -17,7 +17,7 @@
     "express": "^4.13.3",
     "hbs": "~3.1.0",
     "socket.io": "^1.4.5",
-    "mbed-cloud-sdk-javascript": "git+https://git@github.com/ARMMbed/mbed-cloud-sdk-javascript.git"
+    "mbed-cloud-sdk-javascript": "git@github.com:ARMMbed/mbed-cloud-sdk-javascript.git#cfdf0ad42d4681eb5e9292bd5d044644e0a606b9"
   },
   "keywords": [ "node-red" ],
   "node-red"     : {
