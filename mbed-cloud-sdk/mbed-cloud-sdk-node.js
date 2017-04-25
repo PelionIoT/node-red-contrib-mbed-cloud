@@ -8,7 +8,7 @@ module.exports = function(RED) {
         var api = node.context().get('api') || null;
         if (api) return api;
 
-        api = new mbed.DevicesApi({
+        api = new mbed.ConnectApi({
             apiKey: node.server.credentials.apikey
         });
         api.startNotifications(function(error, data) {
@@ -24,15 +24,15 @@ module.exports = function(RED) {
         this.server = RED.nodes.getNode(config.server);
 
         var node = this;
-        var deviceApi = getAPI(node);
+        var connectApi = getAPI(node);
 
         node.on('input', function(msg) {
-            deviceApi.listConnectedDevices(function(error, devices) {
+            connectApi.listConnectedDevices(function(error, devices) {
                 if (error) {
                     node.status({fill: "red", shape: "ring", text: "Error retreiving devices"});
                     node.error(error);
                 } else {
-                    msg.devices = devices.data;
+                    msg.devices = devices;
                     node.send(msg);
                 }
             });
@@ -46,16 +46,12 @@ module.exports = function(RED) {
         this.path = config.path;
 
         var node = this;
-        var deviceApi = getAPI(node);
+        var connectApi = getAPI(node);
 
         node.on('input', function(msg) {
-            deviceApi.addResourceSubscription({
-                fn: function(payload) {
-                    msg.payload = payload;
-                    node.send(msg);
-                }, 
-                id: msg.device, 
-                path: node.path}, 
+            connectApi.addResourceSubscription(
+                msg.device,
+                node.path,
                 function(error) {
                     if (error) {
                         node.status({fill: "red", shape: "ring", text: "Error adding subscription"});
@@ -63,7 +59,11 @@ module.exports = function(RED) {
                     } else {
                         node.status({fill: "green", shape: "dot", text: "Connected"});
                     }
-                }
+                },
+                function(payload) {
+                    msg.payload = payload;
+                    node.send(msg);
+                } 
             );
         });
     }
@@ -76,11 +76,11 @@ module.exports = function(RED) {
         this.path = config.path;
 
         var node = this;
-        var deviceApi = getAPI(node);
+        var connectApi = getAPI(node);
 
         node.on('input', function(msg) {
             if (node.method == "put") {
-                deviceApi.setResourceValue({id: msg.device, path: node.path, value: msg.payload}, function(error) {
+                connectApi.setResourceValue(msg.device, node.path, msg.payload, function(error) {
                     if (error) {
                         node.status({fill: "red", shape: "ring", text: "Error putting to resource"});
                         node.error(error);
@@ -88,7 +88,7 @@ module.exports = function(RED) {
                 });
             } else {
                 node.log("Posting instead of putting");
-                deviceApi.executeResource({id: msg.device, path: node.path}, function(error) {
+                connectApi.executeResource(msg.device, node.path, function(error) {
                     if (error) {
                         node.status({fill: "red", shape: "ring", text: "Error posting to resource"});
                         node.error(error);
@@ -105,10 +105,10 @@ module.exports = function(RED) {
         this.path = config.path;
 
         var node = this;
-        var deviceApi = getAPI(node);
+        var connectApi = getAPI(node);
 
         node.on('input', function(msg) {
-            deviceApi.getResourceValue({id: msg.device, path: node.path}, function(error, value) {
+            connectApi.getResourceValue(msg.device, node.path, function(error, value) {
                 if (error) {
                     node.status({fill: "red", shape: "ring", text: "Error getting resource"});
                     node.error(error);
