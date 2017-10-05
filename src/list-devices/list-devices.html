@@ -18,6 +18,9 @@
 <script type="text/javascript">
     RED.nodes.registerType('list-devices', {
         category: 'mbed_cloud',
+        defaults: {
+            config: { value: "", type: "cloud-config" },
+        },
         inputs: 1,
         outputs: 1,
         icon: "bridge-dash.png",
@@ -30,8 +33,8 @@
 
 <script type="text/x-red" data-template-name="list-devices">
     <div class="form-row">
-        <label for="node-input-server"><i class="icon-tag"></i> API</label>
-        <input type="text" id="node-input-server" placeholder="API">
+        <label for="node-input-config"><i class="icon-tag"></i> config</label>
+        <input type="text" id="node-input-config" placeholder="config">
     </div>
 </script>
 
