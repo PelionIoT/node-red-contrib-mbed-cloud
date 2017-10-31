@@ -69,8 +69,13 @@ gulp.task("compile", ["copy"], function() {
     ]);
 });
 
+gulp.task("move", ["compile"], function () {
+    gulp.src("dist/**/*.*")
+        .pipe(gulp.dest('../../.node-red/nodes'));
+})
+
 gulp.task("watch", ["setWatch", "default"], function() {
     gulp.watch([srcFiles, copyFiles], ["default"]);
 });
 
-gulp.task("default", ["lint", "compile"]);
+gulp.task("default", ["lint", "move"]);

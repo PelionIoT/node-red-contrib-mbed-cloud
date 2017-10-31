@@ -1,0 +1,54 @@
+<!-- 
+ Mbed Cloud JavaScript SDK
+ Copyright Arm Limited 2017
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('stop-campaign', {
+        category: 'mbed_cloud_update',
+        defaults: {
+            config: { value: "", type: "cloud-config" },
+            campaignId: { value: "" },
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bridge-dash.png",
+        color: "#ffc700",
+        label: function () {
+            return this.name || "stop-campaign";
+        }
+    });
+
+</script>
+
+<script type="text/x-red" data-template-name="stop-campaign">
+    <div class="form-row">
+        <label for="node-input-config"><i class="icon-tag"></i> config</label>
+        <input type="text" id="node-input-config" placeholder="config">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-campaignId"><i class="icon-tag"></i> campaign Id</label>
+        <input type="text" id="node-input-campaignId" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="stop-campaign">
+    <p>Stop an update campaign.</p>
+    <p>The input is a campaign Id. This can be set in node properties or supplied in an object e.g.</p>
+    <code>{ campaignId: "your campaign id" }</code>
+    <p>Returns the campaign Id and a payload containing the campaign that was stopped.</p>
+    <code>{ campaignId: "your campaign id", payload: "{campaign object}" }</code>
+</script>
