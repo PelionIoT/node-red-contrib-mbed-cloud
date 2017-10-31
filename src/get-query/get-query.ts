@@ -17,37 +17,38 @@
 
 import { DeviceDirectoryApi } from "mbed-cloud-sdk";
 
-class ListDevices {
-    private connect = null;
+class GetQuery {
+    private update = null;
     private config;
-    private limit;
+    private queryId;
 
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
         if (this.config) {
-            this.connect = new DeviceDirectoryApi({
+            this.update = new DeviceDirectoryApi({
                 apiKey: this.config.credentials.apikey,
                 host: this.config.host
             });
         }
 
-        this.limit = config.limit;
+        this.queryId = config.queryId;
 
         this.node.on("input", this.inputHandler.bind(this));
     }
 
     private inputHandler(msg) {
-        const limit = this.limit || msg.limit;
-        const filter = msg.filter;
-        this.connect.listDevices({ limit, filter })
-            .then(devices => {
-                msg.payload = devices;
+        const queryId = this.queryId || msg.queryId;
+
+        this.update.getQuery(queryId)
+            .then(campaign => {
+                msg.queryId = queryId;
+                msg.payload = campaign;
                 this.node.send(msg);
             }).catch(error => {
                 this.node.status({
                     fill: "red",
                     shape: "ring",
-                    text: "Error retreiving devices"
+                    text: "Error retreiving query"
                 });
                 this.node.error(error);
             });
@@ -55,10 +56,10 @@ class ListDevices {
 }
 export = RED => {
     // tslint:disable-next-line:only-arrow-functions
-    RED.nodes.registerType("list-devices", function(config) {
+    RED.nodes.registerType("get-query", function(config) {
         const node = this;
         RED.nodes.createNode(node, config);
         // tslint:disable-next-line:no-unused-expression
-        new ListDevices(node, config, RED);
+        new GetQuery(node, config, RED);
     });
 };

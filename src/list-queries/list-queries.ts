@@ -17,11 +17,10 @@
 
 import { DeviceDirectoryApi } from "mbed-cloud-sdk";
 
-class ListDevices {
+class ListQueries {
     private connect = null;
     private config;
     private limit;
-
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
         if (this.config) {
@@ -39,15 +38,15 @@ class ListDevices {
     private inputHandler(msg) {
         const limit = this.limit || msg.limit;
         const filter = msg.filter;
-        this.connect.listDevices({ limit, filter })
-            .then(devices => {
-                msg.payload = devices;
+        this.connect.listQueries( { limit, filter } )
+            .then(queries => {
+                msg.payload = queries;
                 this.node.send(msg);
             }).catch(error => {
                 this.node.status({
                     fill: "red",
                     shape: "ring",
-                    text: "Error retreiving devices"
+                    text: "Error retreiving queries"
                 });
                 this.node.error(error);
             });
@@ -55,10 +54,10 @@ class ListDevices {
 }
 export = RED => {
     // tslint:disable-next-line:only-arrow-functions
-    RED.nodes.registerType("list-devices", function(config) {
+    RED.nodes.registerType("list-queries", function(config) {
         const node = this;
         RED.nodes.createNode(node, config);
         // tslint:disable-next-line:no-unused-expression
-        new ListDevices(node, config, RED);
+        new ListQueries(node, config, RED);
     });
 };

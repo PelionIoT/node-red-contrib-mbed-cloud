@@ -16,7 +16,7 @@
 -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('list-devices', {
+    RED.nodes.registerType('run-query', {
         category: 'mbed_cloud_device_directory',
         defaults: {
             config: { value: "", type: "cloud-config" },
@@ -27,29 +27,21 @@
         icon: "bridge-dash.png",
         color: "#95d600",
         label: function () {
-            return this.name || "list-devices";
+            return this.name || "run-query";
         }
     });
 
 </script>
 
-<script type="text/x-red" data-template-name="list-devices">
+<script type="text/x-red" data-template-name="run-query">
     <div class="form-row">
         <label for="node-input-config"><i class="icon-tag"></i> config</label>
         <input type="text" id="node-input-config" placeholder="config">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="list-devices">
+<script type="text/x-red" data-help-name="run-query">
     <p>Return a list of devices.</p>
-    <p>The inputs are limit, which limits the number of devices returned, and filter.</p>
-    <p>Limit can be set either in the node properties or passed in as a property on a Json object.</p>
-    <p>Filter must be supplied through a function node e.g.</p>
-    <code>
-        msg.filter = {
-            state: { $eq: "bootstrapped" }
-        }
-        return msg;
-    </code>
-    <p>Returns a paginated response object.</p>
+    <p>The input is a query object.</p>
+    <p>Returns a paginated response object containing the devices that match the query.</p>
 </script>

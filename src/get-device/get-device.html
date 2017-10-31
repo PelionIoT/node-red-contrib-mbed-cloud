@@ -16,7 +16,7 @@
 -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('list-devices', {
+    RED.nodes.registerType('get-device', {
         category: 'mbed_cloud_device_directory',
         defaults: {
             config: { value: "", type: "cloud-config" },
@@ -27,29 +27,28 @@
         icon: "bridge-dash.png",
         color: "#95d600",
         label: function () {
-            return this.name || "list-devices";
+            return this.name || "get-device";
         }
     });
 
 </script>
 
-<script type="text/x-red" data-template-name="list-devices">
+<script type="text/x-red" data-template-name="get-device">
     <div class="form-row">
         <label for="node-input-config"><i class="icon-tag"></i> config</label>
         <input type="text" id="node-input-config" placeholder="config">
     </div>
+
+    <div class="form-row">
+        <label for="node-input-deviceId"><i class="icon-tag"></i> deviceId</label>
+        <input type="text" id="node-input-deviceId" placeholder="">
+    </div>
 </script>
 
-<script type="text/x-red" data-help-name="list-devices">
-    <p>Return a list of devices.</p>
-    <p>The inputs are limit, which limits the number of devices returned, and filter.</p>
-    <p>Limit can be set either in the node properties or passed in as a property on a Json object.</p>
-    <p>Filter must be supplied through a function node e.g.</p>
-    <code>
-        msg.filter = {
-            state: { $eq: "bootstrapped" }
-        }
-        return msg;
-    </code>
-    <p>Returns a paginated response object.</p>
+<script type="text/x-red" data-help-name="get-device">
+    <p>Get a device.</p>
+    <p>The input is a device Id. This can be set in node properties or supplied in a object e.g.</p>
+    <code>{ deviceId: "your device id" }</code>
+    <p>Returns the device Id and a payload containing the device object.</p>
+    <code>{ deviceId: "your device id", payload: "{device object}" }</code>
 </script>

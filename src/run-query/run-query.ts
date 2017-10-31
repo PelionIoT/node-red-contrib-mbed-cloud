@@ -17,10 +17,9 @@
 
 import { DeviceDirectoryApi } from "mbed-cloud-sdk";
 
-class ListDevices {
+class RunQuery {
     private connect = null;
     private config;
-    private limit;
 
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
@@ -31,15 +30,12 @@ class ListDevices {
             });
         }
 
-        this.limit = config.limit;
-
         this.node.on("input", this.inputHandler.bind(this));
     }
 
     private inputHandler(msg) {
-        const limit = this.limit || msg.limit;
-        const filter = msg.filter;
-        this.connect.listDevices({ limit, filter })
+        const filter = msg.payload.filter;
+        this.connect.listDevices({ filter })
             .then(devices => {
                 msg.payload = devices;
                 this.node.send(msg);
@@ -47,7 +43,7 @@ class ListDevices {
                 this.node.status({
                     fill: "red",
                     shape: "ring",
-                    text: "Error retreiving devices"
+                    text: "Error running query"
                 });
                 this.node.error(error);
             });
@@ -55,10 +51,10 @@ class ListDevices {
 }
 export = RED => {
     // tslint:disable-next-line:only-arrow-functions
-    RED.nodes.registerType("list-devices", function(config) {
+    RED.nodes.registerType("run-query", function(config) {
         const node = this;
         RED.nodes.createNode(node, config);
         // tslint:disable-next-line:no-unused-expression
-        new ListDevices(node, config, RED);
+        new RunQuery(node, config, RED);
     });
 };

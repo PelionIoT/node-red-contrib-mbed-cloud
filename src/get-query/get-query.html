@@ -16,40 +16,39 @@
 -->
 
 <script type="text/javascript">
-    RED.nodes.registerType('list-devices', {
+    RED.nodes.registerType('get-query', {
         category: 'mbed_cloud_device_directory',
         defaults: {
             config: { value: "", type: "cloud-config" },
-            limit: { value: "" }
+            campaignId: { value: "" },
         },
         inputs: 1,
         outputs: 1,
         icon: "bridge-dash.png",
         color: "#95d600",
         label: function () {
-            return this.name || "list-devices";
+            return this.name || "get-query";
         }
     });
 
 </script>
 
-<script type="text/x-red" data-template-name="list-devices">
+<script type="text/x-red" data-template-name="get-query">
     <div class="form-row">
         <label for="node-input-config"><i class="icon-tag"></i> config</label>
         <input type="text" id="node-input-config" placeholder="config">
     </div>
+
+    <div class="form-row">
+        <label for="node-input-campaignId"><i class="icon-tag"></i> query Id</label>
+        <input type="text" id="node-input-queryId" placeholder="">
+    </div>
 </script>
 
-<script type="text/x-red" data-help-name="list-devices">
-    <p>Return a list of devices.</p>
-    <p>The inputs are limit, which limits the number of devices returned, and filter.</p>
-    <p>Limit can be set either in the node properties or passed in as a property on a Json object.</p>
-    <p>Filter must be supplied through a function node e.g.</p>
-    <code>
-        msg.filter = {
-            state: { $eq: "bootstrapped" }
-        }
-        return msg;
-    </code>
-    <p>Returns a paginated response object.</p>
+<script type="text/x-red" data-help-name="get-query">
+    <p>Get query.</p>
+    <p>The input is a query Id. This can be set in node properties or supplied in a object e.g.</p>
+    <code>{ queryId: "your query id" }</code>
+    <p>Returns the query Id and a payload containing the query object.</p>
+    <code>{ queryId: "your query id", payload: "{query object}" }</code>
 </script>
