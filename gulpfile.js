@@ -78,4 +78,6 @@ gulp.task("watch", ["setWatch", "default"], function() {
     gulp.watch([srcFiles, copyFiles], ["default"]);
 });
 
-gulp.task("default", ["lint", "move"]);
+gulp.task("default", ["lint", "compile"]);
+
+gulp.task("local", ["lint", "move"]);
