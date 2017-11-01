@@ -21,6 +21,9 @@ class ListCampaigns {
     private update = null;
     private config;
     private limit;
+    private after;
+    private order;
+    private include;
 
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
@@ -32,15 +35,21 @@ class ListCampaigns {
         }
 
         this.limit = config.limit;
+        this.order = config.order;
+        this.after = config.after;
+        this.include = config.include;
 
         this.node.on("input", this.inputHandler.bind(this));
     }
 
     private inputHandler(msg) {
         const limit = this.limit || msg.limit;
+        const order = this.order || msg.order;
+        const after = this.after || msg.after;
+        const include = this.include || msg.include;
         const filter = msg.filter;
 
-        this.update.listCampaigns( { limit, filter } )
+        this.update.listCampaigns( { limit, order, after, include, filter } )
             .then(campaigns => {
                 msg.payload = campaigns;
                 this.node.send(msg);

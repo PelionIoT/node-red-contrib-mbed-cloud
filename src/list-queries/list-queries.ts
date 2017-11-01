@@ -21,6 +21,10 @@ class ListQueries {
     private connect = null;
     private config;
     private limit;
+    private after;
+    private order;
+    private include;
+
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
         if (this.config) {
@@ -31,14 +35,21 @@ class ListQueries {
         }
 
         this.limit = config.limit;
+        this.order = config.order;
+        this.after = config.after;
+        this.include = config.include;
 
         this.node.on("input", this.inputHandler.bind(this));
     }
 
     private inputHandler(msg) {
         const limit = this.limit || msg.limit;
+        const order = this.order || msg.order;
+        const after = this.after || msg.after;
+        const include = this.include || msg.include;
         const filter = msg.filter;
-        this.connect.listQueries( { limit, filter } )
+
+        this.connect.listQueries( { limit, order, after, include, filter } )
             .then(queries => {
                 msg.payload = queries;
                 this.node.send(msg);

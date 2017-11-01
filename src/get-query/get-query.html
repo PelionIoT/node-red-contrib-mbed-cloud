@@ -46,9 +46,15 @@
 </script>
 
 <script type="text/x-red" data-help-name="get-query">
-    <p>Get query.</p>
-    <p>The input is a query Id. This can be set in node properties or supplied in a object e.g.</p>
-    <code>{ queryId: "your query id" }</code>
-    <p>Returns the query Id and a payload containing the query object.</p>
-    <code>{ queryId: "your query id", payload: "{query object}" }</code>
+    <h3>Get a query</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Query Id - Id of the query</li>
+    </ul>
+    <p>The inputs can be set in node properties or supplied in a object e.g.</p>
+    <code>{ queryId: "015e3854194000000000000100100223" }</code>
+    <h4>Outputs</h4>
+    <p>Returns the query object, as well as the query Id.</p>
+    <code>{ queryId: "015e3854194000000000000100100223", payload: queryObject }</code>
 </script>

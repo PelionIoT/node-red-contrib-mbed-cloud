@@ -21,6 +21,9 @@ class ListDevices {
     private connect = null;
     private config;
     private limit;
+    private after;
+    private order;
+    private include;
 
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
@@ -32,14 +35,20 @@ class ListDevices {
         }
 
         this.limit = config.limit;
+        this.order = config.order;
+        this.after = config.after;
+        this.include = config.include;
 
         this.node.on("input", this.inputHandler.bind(this));
     }
 
     private inputHandler(msg) {
         const limit = this.limit || msg.limit;
+        const order = this.order || msg.order;
+        const after = this.after || msg.after;
+        const include = this.include || msg.include;
         const filter = msg.filter;
-        this.connect.listDevices({ limit, filter })
+        this.connect.listDevices({ limit, order, after, include, filter })
             .then(devices => {
                 msg.payload = devices;
                 this.node.send(msg);

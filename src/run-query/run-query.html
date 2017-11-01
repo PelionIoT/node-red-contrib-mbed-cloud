@@ -41,7 +41,13 @@
 </script>
 
 <script type="text/x-red" data-help-name="run-query">
-    <p>Return a list of devices.</p>
-    <p>The input is a query object.</p>
-    <p>Returns a paginated response object containing the devices that match the query.</p>
+    <h3>Return a list of devices based on a query</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>QueryObject - supplied by a getQuery node</li>
+    </ul>
+    <h4>Outputs</h4>
+    <p>Returns a paginated response object containign the devices</p>
+    <code>{ after: "", linit: 50, order: "ASC", data: [deviceObjects] }</code>
 </script>

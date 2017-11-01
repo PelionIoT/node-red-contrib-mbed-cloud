@@ -46,9 +46,15 @@
 </script>
 
 <script type="text/x-red" data-help-name="get-device">
-    <p>Get a device.</p>
-    <p>The input is a device Id. This can be set in node properties or supplied in a object e.g.</p>
-    <code>{ deviceId: "your device id" }</code>
-    <p>Returns the device Id and a payload containing the device object.</p>
-    <code>{ deviceId: "your device id", payload: "{device object}" }</code>
+    <h3>Get a device</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Device Id - Id of the device</li>
+    </ul>
+    <p>The inputs can be set in node properties or supplied in a object e.g.</p>
+    <code>{ deviceId: "015e3854194000000000000100100223" }</code>
+    <h4>Outputs</h4>
+    <p>Returns the device object, as well as the device Id.</p>
+    <code>{ deviceId: "015e3854194000000000000100100223", payload: deviceObject }</code>
 </script>

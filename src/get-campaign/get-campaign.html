@@ -46,9 +46,15 @@
 </script>
 
 <script type="text/x-red" data-help-name="get-campaign">
-    <p>Get an update campaign.</p>
-    <p>The input is a campaign Id. This can be set in node properties or supplied in a object e.g.</p>
-    <code>{ campaignId: "your campaign id" }</code>
-    <p>Returns the campaign Id and a payload containing the campaign object.</p>
-    <code>{ campaignId: "your campaign id", payload: "{campaign object}" }</code>
+    <h3>Get an update campaign</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Campaign Id - Id of the campaign</li>
+    </ul>
+    <p>The inputs can be set in node properties or supplied in a object e.g.</p>
+    <code>{ campaignId: "015e3854194000000000000100100223" }</code>
+    <h4>Outputs</h4>
+    <p>Returns the campaign object, as well as the campaign Id.</p>
+    <code>{ campaignId: "015e3854194000000000000100100223", payload: campaignObject }</code>
 </script>

@@ -43,12 +43,33 @@
         <label for="node-input-limit"><i class="icon-tag"></i> limit</label>
         <input type="text" id="node-input-limit" placeholder="">
     </div>
+
+    <div class="form-row">
+        <label for="node-input-after"><i class="icon-tag"></i> after</label>
+        <input type="text" id="node-input-after" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-order"><i class="icon-tag"></i> order</label>
+        <input type="text" id="node-input-order" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-include"><i class="icon-tag"></i> include</label>
+        <input type="text" id="node-input-include" placeholder="">
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="list-campaigns">
-    <p>Return a list of update campaigns.</p>
-    <p>The inputs are limit, which limits the number of campaigns returned, and filter.</p>
-    <p>Limit can be set either in the node properties or passed in as a property on a Json object.</p>
+    <h3>Return a list of update campaigns.</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Limit - how many objects to retrieve in the page</li>
+        <li>order - ASC or DESC</li>
+        <li>after - the ID of the the item after which to retrieve the next page</li>
+        <li>Include - Optional fields to include</li>
+    </ul>
     <p>Filter must be supplied through a function node e.g.</p>
     <code>
         msg.filter = {
@@ -56,5 +77,7 @@
         }
         return msg;
     </code>
-    <p>Returns a paginated response object.</p>
+    <h4>Outputs</h4>
+    <p>Returns a paginated response object containign the campaigns</p>
+    <code>{ after: "", linit: 50, order: "ASC", data: [campaignObjects] }</code>
 </script>
