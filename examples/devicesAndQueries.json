@@ -1,0 +1,189 @@
+[
+    {
+        "id": "9a6fcde7.42949",
+        "type": "tab",
+        "label": "Devices and Queries",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1e8536f1.8b6dd9",
+        "type": "list-devices",
+        "z": "9a6fcde7.42949",
+        "config": "c6bb36d.f301ec8",
+        "limit": "",
+        "x": 404.5,
+        "y": 68,
+        "wires": [
+            [
+                "7634fef.faa0c"
+            ]
+        ]
+    },
+    {
+        "id": "5c757125.49601",
+        "type": "inject",
+        "z": "9a6fcde7.42949",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 106.5,
+        "y": 52,
+        "wires": [
+            [
+                "49bf7dd1.2f3c44",
+                "1e8536f1.8b6dd9"
+            ]
+        ]
+    },
+    {
+        "id": "49bf7dd1.2f3c44",
+        "type": "list-queries",
+        "z": "9a6fcde7.42949",
+        "config": "c6bb36d.f301ec8",
+        "limit": "5",
+        "x": 191.5,
+        "y": 183,
+        "wires": [
+            [
+                "948f5963.ad95c8"
+            ]
+        ]
+    },
+    {
+        "id": "91426fd8.1ea83",
+        "type": "get-query",
+        "z": "9a6fcde7.42949",
+        "config": "c6bb36d.f301ec8",
+        "campaignId": "",
+        "x": 343.5,
+        "y": 373,
+        "wires": [
+            [
+                "b018b7e6.c4aa88"
+            ]
+        ]
+    },
+    {
+        "id": "948f5963.ad95c8",
+        "type": "function",
+        "z": "9a6fcde7.42949",
+        "name": "getQueryId",
+        "func": "var data = msg.payload.data[0].id;\nreturn { \"queryId\": data }",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 254.5,
+        "y": 268,
+        "wires": [
+            [
+                "91426fd8.1ea83"
+            ]
+        ]
+    },
+    {
+        "id": "5915d481.7c0c6c",
+        "type": "get-device",
+        "z": "9a6fcde7.42949",
+        "config": "c6bb36d.f301ec8",
+        "limit": "",
+        "x": 625.5,
+        "y": 237,
+        "wires": [
+            [
+                "e1b707de.13b7e8"
+            ]
+        ]
+    },
+    {
+        "id": "7634fef.faa0c",
+        "type": "function",
+        "z": "9a6fcde7.42949",
+        "name": "getDeviceId",
+        "func": "var data = msg.payload.data[0].id;\nreturn { \"deviceId\": data }",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 525.5,
+        "y": 156,
+        "wires": [
+            [
+                "5915d481.7c0c6c"
+            ]
+        ]
+    },
+    {
+        "id": "e1b707de.13b7e8",
+        "type": "json",
+        "z": "9a6fcde7.42949",
+        "name": "",
+        "pretty": false,
+        "x": 749.5,
+        "y": 294,
+        "wires": [
+            [
+                "3fd0297d.0ffcf6"
+            ]
+        ]
+    },
+    {
+        "id": "3fd0297d.0ffcf6",
+        "type": "debug",
+        "z": "9a6fcde7.42949",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 832.5,
+        "y": 375,
+        "wires": []
+    },
+    {
+        "id": "b018b7e6.c4aa88",
+        "type": "run-query",
+        "z": "9a6fcde7.42949",
+        "config": "c6bb36d.f301ec8",
+        "limit": "",
+        "x": 444.5,
+        "y": 469,
+        "wires": [
+            [
+                "ed3806a0.9346f8"
+            ]
+        ]
+    },
+    {
+        "id": "ed3806a0.9346f8",
+        "type": "json",
+        "z": "9a6fcde7.42949",
+        "name": "",
+        "pretty": false,
+        "x": 611.5,
+        "y": 536,
+        "wires": [
+            [
+                "5a81cdcd.e98ed4"
+            ]
+        ]
+    },
+    {
+        "id": "5a81cdcd.e98ed4",
+        "type": "debug",
+        "z": "9a6fcde7.42949",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 799.5,
+        "y": 554,
+        "wires": []
+    },
+    {
+        "id": "c6bb36d.f301ec8",
+        "type": "cloud-config",
+        "z": "",
+        "host": "https://lab-api.mbedcloudintegration.net"
+    }
+]
