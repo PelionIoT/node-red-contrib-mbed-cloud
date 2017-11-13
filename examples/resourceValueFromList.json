@@ -1,0 +1,120 @@
+[
+    {
+        "id": "2204c611.0398fa",
+        "type": "tab",
+        "label": "Resource value from list devices",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e210b8a8.b7105",
+        "type": "inject",
+        "z": "2204c611.0398fa",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 103,
+        "y": 53,
+        "wires": [
+            [
+                "1c240a41.24ec16"
+            ]
+        ]
+    },
+    {
+        "id": "d04dab57.12baa8",
+        "type": "function",
+        "z": "2204c611.0398fa",
+        "name": "getDeviceId",
+        "func": "var data = msg.payload.data[0].id;\nreturn { \"deviceId\": data }",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 417,
+        "y": 130,
+        "wires": [
+            [
+                "981fa023.9a96d"
+            ]
+        ]
+    },
+    {
+        "id": "e1509954.5a9ee8",
+        "type": "function",
+        "z": "2204c611.0398fa",
+        "name": "getResourcePath",
+        "func": "var payload = msg;\n\nmsg.payload.forEach(function(item)\n    {\n        if (item.path === \"/5001/0/1\")\n        {\n            payload = {\n                \"deviceId\": item.deviceId,\n                \"resourceURI\": item.path.substring(1)\n            };\n        }\n    }\n)\nreturn payload;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 670,
+        "y": 286,
+        "wires": [
+            [
+                "1a22d2d4.5bc16d"
+            ]
+        ]
+    },
+    {
+        "id": "fb2825b3.7dccb8",
+        "type": "debug",
+        "z": "2204c611.0398fa",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 842,
+        "y": 478,
+        "wires": []
+    },
+    {
+        "id": "1c240a41.24ec16",
+        "type": "list-connected-devices",
+        "z": "2204c611.0398fa",
+        "config": "c6bb36d.f301ec8",
+        "x": 198.5,
+        "y": 169,
+        "wires": [
+            [
+                "d04dab57.12baa8"
+            ]
+        ]
+    },
+    {
+        "id": "981fa023.9a96d",
+        "type": "list-resources",
+        "z": "2204c611.0398fa",
+        "config": "c6bb36d.f301ec8",
+        "deviceId": "",
+        "x": 551.5,
+        "y": 211,
+        "wires": [
+            [
+                "e1509954.5a9ee8"
+            ]
+        ]
+    },
+    {
+        "id": "1a22d2d4.5bc16d",
+        "type": "get-resource-value",
+        "z": "2204c611.0398fa",
+        "config": "c6bb36d.f301ec8",
+        "deviceId": "",
+        "resourceURI": "",
+        "x": 748.5,
+        "y": 390,
+        "wires": [
+            [
+                "fb2825b3.7dccb8"
+            ]
+        ]
+    },
+    {
+        "id": "c6bb36d.f301ec8",
+        "type": "cloud-config",
+        "z": "",
+        "host": "https://lab-api.mbedcloudintegration.net"
+    }
+]

@@ -1,0 +1,75 @@
+[
+    {
+        "id": "b10e8f81.1f8f2",
+        "type": "tab",
+        "label": "Resource Subscription",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e05a572c.195c98",
+        "type": "add-resource-subscription",
+        "z": "b10e8f81.1f8f2",
+        "config": "c6bb36d.f301ec8",
+        "deviceId": "015e3854194000000000000100100223",
+        "resourceURI": "5002/0/1",
+        "x": 372.5,
+        "y": 202,
+        "wires": [
+            [
+                "91f8f3c2.48aab"
+            ]
+        ]
+    },
+    {
+        "id": "ed28fcd1.d6305",
+        "type": "inject",
+        "z": "b10e8f81.1f8f2",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 94.5,
+        "y": 80,
+        "wires": [
+            [
+                "e05a572c.195c98"
+            ]
+        ]
+    },
+    {
+        "id": "1f190481.2d3abb",
+        "type": "twitter out",
+        "z": "b10e8f81.1f8f2",
+        "twitter": "",
+        "name": "Tweet",
+        "x": 799.5,
+        "y": 343,
+        "wires": []
+    },
+    {
+        "id": "91f8f3c2.48aab",
+        "type": "function",
+        "z": "b10e8f81.1f8f2",
+        "name": "createTweet",
+        "func": "msg.payload = \"The value of my resource is now \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 638.5,
+        "y": 261,
+        "wires": [
+            [
+                "1f190481.2d3abb"
+            ]
+        ]
+    },
+    {
+        "id": "c6bb36d.f301ec8",
+        "type": "cloud-config",
+        "z": "",
+        "host": "https://lab-api.mbedcloudintegration.net"
+    }
+]

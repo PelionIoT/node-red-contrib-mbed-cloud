@@ -1,4 +1,5 @@
-# mbed-connector-api-nodeRED
+# Mbed Cloud plugin for Node-RED
+
 node-RED node to talk to mbed-cloud. This will enable various 3rd party services that already have node-RED workflows to use connector.
  
 ## How to install

@@ -1,0 +1,67 @@
+<!-- 
+ Mbed Cloud JavaScript SDK
+ Copyright Arm Limited 2017
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('add-resource-subscription', {
+        category: 'mbed_cloud_connect',
+        defaults: {
+            config: { value: "", type: "cloud-config" },
+            deviceId: { value: "" },
+            resourceURI: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bridge-dash.png",
+        color: "#00c1de",
+        label: function () {
+            return this.name || "add-resource-subscription";
+        }
+    });
+
+</script>
+
+<script type="text/x-red" data-template-name="add-resource-subscription">
+    <div class="form-row">
+        <label for="node-input-config"><i class="icon-tag"></i> config</label>
+        <input type="text" id="node-input-config" placeholder="config">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-deviceId"><i class="icon-tag"></i> device Id</label>
+        <input type="text" id="node-input-deviceId" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-resourceURI"><i class="icon-tag"></i> resource URI</label>
+        <input type="text" id="node-input-resourceURI" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="add-resource-subscription">
+    <h3>Subscribe to a resource</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Device Id - Id of the device</li>
+        <li>Resource URI - URI of the resource to subscribe to.</li>
+    </ul>
+    <p>The inputs can be set in node properties or supplied in a object e.g.</p>
+    <code>{ deviceId: "015e3854194000000000000100100223", resourceURI: "5002/0/1" }</code>
+    <h4>Outputs</h4>
+    <p>Returns the value of the resource whenever the resource changes, as well as the device Id and resource URI.</p>
+    <code>{ deviceId: "015e3854194000000000000100100223", resourceURI: "5002/0/1", payload: "value of resource" }</code>
+</script>

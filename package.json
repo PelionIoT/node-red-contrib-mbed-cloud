@@ -1,29 +1,58 @@
 {
-  "name": "node-red-contrib-mbed-cloud-sdk",
+  "name": "node-red-contrib-mbed-cloud",
   "version": "1.0.0",
-  "description": "Node-red implementation of the mbed cloud SDK library.",
+  "description": "Node-red implementation of the Mbed Cloud SDK for JavaScript",
+  "homepage": "https://www.mbed.com",
+  "author": "Rob Moran <rob.moran@arm.com>",
   "license": "Apache-2.0",
-  "author": {
-    "name": "Michael Ray",
-    "email": "michael.ray@arm.com"
-  },
+  "types": "./types/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ARMmbed/mbed-cloud-sdk-nodered.git"
+    "url": "git+https://github.com/ARMmbed/node-red-contrib-mbed-cloud.git"
+  },
+  "keywords": [
+    "mbed",
+    "node-red"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.28",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-tslint": "^8.1.2",
+    "gulp-typescript": "^3.2.2",
+    "merge2": "^1.2.0",
+    "tslint": "^5.7.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "^2.5.2"
   },
   "dependencies": {
-    "async": "^1.5.2",
-    "dotenv": "^2.0.0",
-    "express": "^4.13.3",
-    "hbs": "~3.1.0",
-    "socket.io": "^1.4.5",
-    "mbed-cloud-sdk-javascript": "armmbed/mbed-cloud-sdk-javascript#build"
+    "mbed-cloud-sdk": "^1.2.3"
   },
-  "keywords": [ "node-red" ],
-  "node-red"     : {
-      "nodes": {
-          "mbed-cloud-sdk-config": "mbed-cloud-sdk/mbed-cloud-sdk-node-config.js",
-          "mbed-cloud-sdk": "mbed-cloud-sdk/mbed-cloud-sdk-node.js"
-      }
+  "node-red": {
+    "nodes": {
+      "add-resource-subscription": "dist/add-resource-subscription/add-resource-subscription.js",
+      "cloud-config": "dist/cloud-config/cloud-config.js",
+      "execure-resource": "dist/execure-resource/execure-resource.js",
+      "get-campaign": "dist/get-campaign/get-campaign.js",
+      "get-device": "dist/get-device/get-device.js",
+      "get-query": "dist/get-query/get-query.js",
+      "get-resource-value": "dist/get-resource-value/get-resource-value.js",
+      "list-campaigns": "dist/list-campaigns/list-campaigns.js",
+      "list-connected-devices": "dist/list-connected-devices/list-connected-devices.js",
+      "list-devices": "dist/list-devices/list-devices.js",
+      "list-metrics": "dist/list-metrics/list-metrics.js",
+      "list-queries": "dist/list-queries/list-queries.js",
+      "list-resources": "dist/list-resources/list-resources.js",
+      "run-query": "dist/run-query/run-query.js",
+      "set-resource-query": "dist/set-resource-query/set-resource-query.js",
+      "start-campaign": "dist/start-campaign/start-campaign.js",
+      "stop-campaign": "dist/stop-campaign/stop-campaign.js"
+    }
   }
 }

@@ -1,0 +1,83 @@
+<!-- 
+ Mbed Cloud JavaScript SDK
+ Copyright Arm Limited 2017
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('list-queries', {
+        category: 'mbed_cloud_device_directory',
+        defaults: {
+            config: { value: "", type: "cloud-config" },
+            limit: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bridge-dash.png",
+        color: "#95d600",
+        label: function () {
+            return this.name || "list-queries";
+        }
+    });
+
+</script>
+
+<script type="text/x-red" data-template-name="list-queries">
+    <div class="form-row">
+        <label for="node-input-config"><i class="icon-tag"></i> config</label>
+        <input type="text" id="node-input-config" placeholder="config">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-limit"><i class="icon-tag"></i> limit</label>
+        <input type="text" id="node-input-limit" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-after"><i class="icon-tag"></i> after</label>
+        <input type="text" id="node-input-after" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-order"><i class="icon-tag"></i> order</label>
+        <input type="text" id="node-input-order" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-include"><i class="icon-tag"></i> include</label>
+        <input type="text" id="node-input-include" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="list-queries">
+    <h3>Return a list of queries.</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Limit - how many objects to retrieve in the page</li>
+        <li>order - ASC or DESC</li>
+        <li>after - the ID of the the item after which to retrieve the next page</li>
+        <li>Include - Optional fields to include</li>
+    </ul>
+    <p>Filter must be supplied through a function node e.g.</p>
+    <code>
+        msg.filter = {
+            name: { $eq: "myQuery" }
+        }
+        return msg;
+    </code>
+    <h4>Outputs</h4>
+    <p>Returns a paginated response object containign the queries</p>
+    <code>{ after: "", linit: 50, order: "ASC", data: [queryObjects] }</code>
+</script>

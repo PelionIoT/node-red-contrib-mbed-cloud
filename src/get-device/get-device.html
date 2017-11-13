@@ -1,0 +1,60 @@
+<!-- 
+ Mbed Cloud JavaScript SDK
+ Copyright Arm Limited 2017
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('get-device', {
+        category: 'mbed_cloud_device_directory',
+        defaults: {
+            config: { value: "", type: "cloud-config" },
+            limit: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bridge-dash.png",
+        color: "#95d600",
+        label: function () {
+            return this.name || "get-device";
+        }
+    });
+
+</script>
+
+<script type="text/x-red" data-template-name="get-device">
+    <div class="form-row">
+        <label for="node-input-config"><i class="icon-tag"></i> config</label>
+        <input type="text" id="node-input-config" placeholder="config">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-deviceId"><i class="icon-tag"></i> deviceId</label>
+        <input type="text" id="node-input-deviceId" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="get-device">
+    <h3>Get a device</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>Device Id - Id of the device</li>
+    </ul>
+    <p>The inputs can be set in node properties or supplied in a object e.g.</p>
+    <code>{ deviceId: "015e3854194000000000000100100223" }</code>
+    <h4>Outputs</h4>
+    <p>Returns the device object, as well as the device Id.</p>
+    <code>{ deviceId: "015e3854194000000000000100100223", payload: deviceObject }</code>
+</script>

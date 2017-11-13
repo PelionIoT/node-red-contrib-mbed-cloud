@@ -1,0 +1,39 @@
+general:
+  branches:
+    ignore:
+      - build
+
+machine:
+  node:
+    version: 6.0.0
+  environment:
+    PRODUCT_NAME: ${CIRCLE_PROJECT_REPONAME}
+    PRODUCT_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
+    PRODUCT_BRANCH: build
+
+dependencies:
+  post:
+    - npm run gulp
+
+test:
+  override:
+    - exit 0;
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - echo Syncing $PRODUCT_NAME to $PRODUCT_BRANCH on GitHub...
+      - git add --force dist types
+      - git stash save
+      - git checkout $PRODUCT_BRANCH
+      - git merge master --no-commit
+      - git checkout stash -- .
+      - git commit --allow-empty --message "Automatic Deployment"
+      - git push
+  release:
+    branch: release
+    commands:
+      - echo Tagging $PRODUCT_NAME in GitHub...
+      - git tag ${PRODUCT_TAG}
+      - git push --tags

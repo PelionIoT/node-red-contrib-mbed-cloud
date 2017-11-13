@@ -1,0 +1,74 @@
+<!-- 
+ Mbed Cloud JavaScript SDK
+ Copyright Arm Limited 2017
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<script type="text/javascript">
+    RED.nodes.registerType('list-metrics', {
+        category: 'mbed_cloud_connect',
+        defaults: {
+            config: { value: "", type: "cloud-config" },
+            start: {value: "", required: true},
+            end: {value: "", required: true},
+            include: {value: "", required: true}
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "bridge-dash.png",
+        color: "#00c1de",
+        label: function () {
+            return this.name || "list-metrics";
+        }
+    });
+
+</script>
+
+<script type="text/x-red" data-template-name="list-metrics">
+    <div class="form-row">
+        <label for="node-input-config"><i class="icon-tag"></i> config</label>
+        <input type="text" id="node-input-config" placeholder="config">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-start"><i class="icon-tag"></i> start</label>
+        <input type="text" id="node-input-start" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-end"><i class="icon-tag"></i> end</label>
+        <input type="text" id="node-input-end" placeholder="">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-include"><i class="icon-tag"></i> include</label>
+        <input type="text" id="node-input-include" placeholder="">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="list-metrics">
+    <h3>Return a list of metrics.</h3>
+    <h4>Inputs</h4>
+    <p>Required inputs are:</p>
+    <ul>
+        <li>start - Start date in format "mm/dd/yyy"</li>
+        <li>end - End date in format "mm/dd/yyy"</li>
+        <li>Include - Optional metrics fields to include in format "filter1, filter2"</li>
+    </ul>
+    <p>The inputs can be set in node properties or supplied in a object e.g.</p>
+    <code>{ start: "10/01/2017", end: "11/01/2017", include: ["pendingBootstraps", "failedBootstraps"] }</code>
+    <h4>Outputs</h4>
+    <p>Returns a paginated response object.</p>
+    <code>{ after: "", linit: 50, order: "ASC", data: [metrics] }</code>
+</script>
