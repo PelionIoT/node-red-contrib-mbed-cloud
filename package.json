@@ -38,7 +38,7 @@
     "nodes": {
       "add-resource-subscription": "dist/add-resource-subscription/add-resource-subscription.js",
       "cloud-config": "dist/cloud-config/cloud-config.js",
-      "execure-resource": "dist/execure-resource/execure-resource.js",
+      "execute-resource": "dist/execute-resource/execute-resource.js",
       "get-campaign": "dist/get-campaign/get-campaign.js",
       "get-device": "dist/get-device/get-device.js",
       "get-query": "dist/get-query/get-query.js",
