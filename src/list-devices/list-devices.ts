@@ -24,9 +24,6 @@ class ListDevices {
     private after;
     private order;
     private include;
-    private state;
-    private stateEq;
-    private filter;
 
     constructor(private node, config, RED) {
         this.config = RED.nodes.getNode(config.config);
@@ -41,13 +38,7 @@ class ListDevices {
         this.order = config.order;
         this.after = config.after;
         this.include = config.include;
-        this.state  = config.state;
-        this.stateEq = config.stateEq;
-        if (this.state) {
-            const stateFilter = {};
-            stateFilter[this.stateEq] = this.state;
-            this.filter = { state: stateFilter };
-        }
+
         this.node.on("input", this.inputHandler.bind(this));
     }
 
@@ -56,15 +47,10 @@ class ListDevices {
         const order = this.order || msg.order;
         const after = this.after || msg.after;
         const include = this.include || msg.include;
-        const filter = this.filter || msg.filter;
+        const filter = msg.filter;
         this.connect.listDevices({ limit, order, after, include, filter })
             .then(devices => {
                 msg.payload = devices;
-                this.node.status({
-                    fill: "green",
-                    shape: "ring",
-                    text: "successfully retreived devices"
-                });
                 this.node.send(msg);
             }).catch(error => {
                 this.node.status({
