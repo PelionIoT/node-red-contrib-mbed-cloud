@@ -31,7 +31,6 @@ class GetDevice {
         }
 
         this.deviceId = config.deviceId;
-
         this.node.on("input", this.inputHandler.bind(this));
     }
 
