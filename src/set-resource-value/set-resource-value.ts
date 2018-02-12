@@ -42,7 +42,7 @@ class SetResourceValue {
     private inputHandler(msg) {
         const deviceId = this.deviceId || msg.deviceId;
         const resourceURI = this.resourceURI || msg.resourceURI;
-        const payload = this.payload || msg.resourcePayload;
+        const payload = this.payload || msg.payload;
 
         this.connect.setResourceValue(deviceId, resourceURI, payload)
             .then(data => {
