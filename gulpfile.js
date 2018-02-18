@@ -1,10 +1,9 @@
 var path        = require("path");
 var del         = require("del");
 var merge       = require('merge2');
-var tslint      = require("tslint");
 var gulp        = require("gulp");
+var tslint      = require("gulp-tslint");
 var gulpTs      = require("gulp-typescript");
-var gulpTslint  = require("gulp-tslint");
 
 var srcDir = "src";
 var srcFiles = srcDir + "/**/*.ts";
@@ -30,14 +29,11 @@ gulp.task("clean", function() {
 
 // Lint the source
 gulp.task("lint", function() {
-    var program = tslint.Linter.createProgram("./");
-
     gulp.src(srcFiles)
-    .pipe(gulpTslint({
-        program: program,
+    .pipe(tslint({
         formatter: "stylish"
     }))
-    .pipe(gulpTslint.report({
+    .pipe(tslint.report({
         emitError: !watching
     }))
 });
@@ -71,7 +67,7 @@ gulp.task("compile", ["copy"], function() {
 
 gulp.task("move", ["compile"], function () {
     gulp.src("dist/**/*.*")
-        .pipe(gulp.dest('../../.node-red/nodes'));
+    .pipe(gulp.dest('../../.node-red/nodes'));
 })
 
 gulp.task("watch", ["setWatch", "default"], function() {
