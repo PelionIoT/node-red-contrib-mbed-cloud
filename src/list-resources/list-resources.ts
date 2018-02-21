@@ -15,7 +15,7 @@
 * limitations under the License.
 */
 
-import { ConnectApiManager } from "../ConnectApiManager";
+import { ConnectApiManager } from "../connectApiManager";
 
 class ListResources {
     private connect = null;
