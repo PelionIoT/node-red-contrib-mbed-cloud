@@ -31,16 +31,15 @@ class GetDevice {
         }
 
         this.deviceId = config.deviceId;
-
         this.node.on("input", this.inputHandler.bind(this));
     }
 
     private inputHandler(msg) {
         const deviceId = this.deviceId || msg.deviceId;
         this.connect.getDevice(deviceId)
-            .then(devices => {
+            .then(device => {
                 msg.deviceId = deviceId;
-                msg.payload = devices;
+                msg.payload = device;
                 this.node.send(msg);
             }).catch(error => {
                 this.node.status({

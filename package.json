@@ -50,9 +50,10 @@
       "list-queries": "dist/list-queries/list-queries.js",
       "list-resources": "dist/list-resources/list-resources.js",
       "run-query": "dist/run-query/run-query.js",
-      "set-resource-query": "dist/set-resource-query/set-resource-query.js",
+      "set-resource-value": "dist/set-resource-value/set-resource-value.js",
       "start-campaign": "dist/start-campaign/start-campaign.js",
-      "stop-campaign": "dist/stop-campaign/stop-campaign.js"
+      "stop-campaign": "dist/stop-campaign/stop-campaign.js",
+      "add-firmware-image": "dist/add-firmware-image/add-firmware-image.js"
     }
   }
 }

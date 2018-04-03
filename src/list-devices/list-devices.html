@@ -1,4 +1,4 @@
-<!-- 
+<!--
  Mbed Cloud JavaScript SDK
  Copyright Arm Limited 2017
 
@@ -20,7 +20,8 @@
         category: 'mbed_cloud_device_directory',
         defaults: {
             config: { value: "", type: "cloud-config" },
-            limit: { value: "" }
+            state: {value: ""},
+            stateEq: {value: "$eq"}
         },
         inputs: 1,
         outputs: 1,
@@ -37,6 +38,24 @@
     <div class="form-row">
         <label for="node-input-config"><i class="icon-tag"></i> config</label>
         <input type="text" id="node-input-config" placeholder="config">
+    </div>
+
+    <h4>Optional Filters</h4>
+
+    <div class="form-row">
+        <label for="node-input-state">State</label>
+        <select id="node-input-stateEq" placeholder="State Eq">
+            <option value="$eq" selected>Equals</option>
+            <option value="$ne">Not equals</option>
+        </select>
+        <select id="node-input-state" placeholder="State">
+            <option value="" selected>---</option>
+            <option value="unenrolled">Unenrolled</option>
+            <option value="cloud_enrolling">Cloud enrolling</option>
+            <option value="bootstrapped">Bootstrapped</option>
+            <option value="registered">Registered</option>
+            <option value="deregistered">Deregistered</option>
+        </select>
     </div>
 
     <div class="form-row">
@@ -63,14 +82,14 @@
 <script type="text/x-red" data-help-name="list-devices">
     <h3>Return a list of devices.</h3>
     <h4>Inputs</h4>
-    <p>Required inputs are:</p>
+    <p>Optional filters are:</p>
     <ul>
         <li>Limit - how many objects to retrieve in the page</li>
         <li>order - ASC or DESC</li>
         <li>after - the ID of the the item after which to retrieve the next page</li>
         <li>Include - Optional fields to include</li>
     </ul>
-    <p>Filter must be supplied through a function node e.g.</p>
+    <p>Filter can be selected from dropdown list or supplied through a function node e.g.</p>
     <code>
         msg.filter = {
             state: { $eq: "bootstrapped" }
@@ -78,6 +97,6 @@
         return msg;
     </code>
     <h4>Outputs</h4>
-    <p>Returns a paginated response object containign the devices</p>
+    <p>Returns a paginated response object containign the devices, the default response is:</p>
     <code>{ after: "", linit: 50, order: "ASC", data: [deviceObjects] }</code>
 </script>
