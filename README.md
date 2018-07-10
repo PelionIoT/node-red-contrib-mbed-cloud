@@ -3,7 +3,7 @@
 Node-RED node to talk to mbed-cloud. This will enable various 3rd party services that already have node-RED workflows to connect to Mbed Cloud.
  
 ## How to install
-You can either install using npm via `TODO: not yet ready` or by cloning this repository to your `node-red/nodes` folder. More instructions can be found on the [Node-RED documentation](http://nodered.org/docs/getting-started/adding-nodes)
+For now we don't have an NPM package, so please follow the instructions in [DEVELOPMEND.md](DEVELOPMENT.md).
 
 ### How to use
 Import the following code:
