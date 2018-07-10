@@ -1,11 +1,11 @@
 # Mbed Cloud plugin for Node-RED
 
-Node-RED node to talk to mbed-cloud. This will enable various 3rd party services that already have node-RED workflows to connect to Mbed Cloud.
+Node-RED nodes to talk to mbed-cloud. This will enable various 3rd party services that already have node-RED workflows to connect to Mbed Cloud.
  
 ## How to install
 For now we don't have an NPM package, so please follow the instructions in [DEVELOPMEND.md](DEVELOPMENT.md).
 
-### How to use
+## How to use
 Import the following code:
 ```
 [
@@ -91,6 +91,3 @@ Further examples can be found in the examples folder.
 
 ## Liscense
 Apache 2.0
-
-## Similar Projects
-- [Mbed Cloud Javascript SDK](https://github.com/ARMmbed/mbed-cloud-sdk-javascript)
