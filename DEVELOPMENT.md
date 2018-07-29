@@ -1,4 +1,6 @@
-## Installing 
+## Manual Install
+
+**Note** this is only a workaround for internal development. Once this has been added to npm the best course of action would be to avoid all this mess by simply runing `npm install mbed-cloud-sdk`. 
 
 Install node-red by following the instructions [here](https://nodered.org/docs/getting-started/installation).
 
@@ -18,19 +20,19 @@ Simply use the default ```gulp``` task to build the nodes
 
 ## Using nodes in node-red
 
-The node-red installation creates a .node-red folder in your home directory. Inside this directory, create a new folder called nodes.
+The node-red installation creates a .node-red folder in your home directory. Inside this directory, create a new folder called `nodes`. 
+
+**NOTE** you will need both a `node_modules` and a `node` folder, the `node_modules` folder should already exist
 
 ```bash
+> cd ~/.node-red
 > mkdir nodes
 > cd nodes
 ```
 
-Inside the nodes folder you need to install the mbed-cloud-sdk.
+Next we need to copy everything from `node-red-contrib-mbed-cloud/node_modules/*` to `~/.node-red/node_modules/*` 
+Also copy everything from `node-red-contrib-mbed-cloud/dist/*` to `~/.node-red/node/*`
 
-```bash
-> npm install --save mbed-cloud-sdk
-```
 
-Now move the .js and .html from the project dist folder into the nodes folder. If node-red was running, restart and the mbed-cloud nodes should be in the palette.
 
 More information on how to ass nodes locally can be found [here](https://nodered.org/docs/getting-started/adding-nodes).
