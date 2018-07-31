@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Node-red implementation of the Mbed Cloud SDK for JavaScript",
   "homepage": "https://www.mbed.com",
-  "author": "Rob Moran <rob.moran@arm.com>",
+  "author": "Alex Logan <alex.logan@arm.com>",
   "license": "Apache-2.0",
   "types": "./types/index.d.ts",
   "repository": {
