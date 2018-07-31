@@ -1,3 +1,5 @@
+![Status](https://img.shields.io/badge/status-Preview_Release-orange.svg)
+
 # Mbed Cloud plugin for Node-RED
 
 Node-RED nodes to talk to mbed-cloud. This will enable various 3rd party services that already have node-RED workflows to connect to Mbed Cloud.
