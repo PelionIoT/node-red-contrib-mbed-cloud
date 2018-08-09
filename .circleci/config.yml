@@ -4,8 +4,13 @@ jobs:
     docker:
       - image: node:8.0
     steps:
+      - checkout 
       - run:
-          name: "Checking Versions"
-          command: |
-            node --version
-            npm --version
+          name: Install node-red
+          command: sudo npm install -g --unsafe-perm node-red
+      - run:
+          name: Install npm dependencies
+          command: npm install 
+      - run:
+          name: Build nodes
+          command: npm run gulp
