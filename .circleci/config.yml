@@ -12,12 +12,12 @@ jobs:
       - run:
           name: Install node-red 
           command: sudo npm install -g --unsafe-perm node-red
-      # -run: 
-      #   name: Clone Repo
-      #   command: git clone https://github.com/ARMmbed/node-red-contrib-mbed-cloud.git
-      # - run:
-      #     name: Install dependencies 
-      #     command: npm install
-      # - run:
-      #   name: Build nodes
-      #   command: npm run gulp  
+      -run: 
+        name: Clone Repo
+        command: git clone https://github.com/ARMmbed/node-red-contrib-mbed-cloud.git
+      - run:
+          name: Install dependencies 
+          command: npm install
+      - run:
+        name: Build nodes
+        command: npm run gulp  
