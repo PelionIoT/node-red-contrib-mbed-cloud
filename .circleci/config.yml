@@ -6,7 +6,5 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: Check Versions
-          command: | 
-            node -v
-            npm -v
+          name: Install Node-RED
+          command: docker run -it -p 1880:1880 --name mynodered nodered/node-red-docker
