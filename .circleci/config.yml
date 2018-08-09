@@ -5,7 +5,6 @@ jobs:
       enabled: true
       image: circleci/classic:201710-02
     steps:
-      -checkout
       - run:
         name: Node Version
         command: node -v 
