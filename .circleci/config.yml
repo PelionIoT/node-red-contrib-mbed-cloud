@@ -1,9 +1,8 @@
 version: 2
 jobs:
   build:
-    machine:
-      enabled: true 
-      image: circleci/classic:201710-02
+    docker:
+      image: circleci/python:3.7.0-stretch-node-browsers
     steps:
       - run:
         name: Node Version
