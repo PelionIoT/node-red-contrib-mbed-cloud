@@ -18,6 +18,3 @@ jobs:
       - run:
           name: Install dependencies 
           command: npm install
-      - run:
-        name: Build nodes
-        command: npm run gulp  
