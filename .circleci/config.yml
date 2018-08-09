@@ -4,9 +4,10 @@ jobs:
     docker:
       image: circleci/python:3.7.0-stretch-node-browsers
     steps:
+      - checkout
       - run:
-        name: Node Version
-        command: node -v 
+          name: Node Version
+          command: node -v 
       - run:
           name: Install node-red 
           command: sudo npm install -g --unsafe-perm node-red
