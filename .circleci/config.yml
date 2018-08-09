@@ -6,11 +6,7 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: Install node-red
-          command: npm install -g --unsafe-perm node-red
-      - run:
-          name: Install npm dependencies
-          command: npm install 
-      - run:
-          name: Build nodes
-          command: npm run gulp
+          name: Check Versions
+          command: | 
+            node -v
+            npm -v
