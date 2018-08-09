@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    machine:
+      enabled: true
+      image: circleci/classic:201710-02
+    steps:
+      - checkout
+      -run:
+        name: Node Version 
+        command: node -v
+      - run:
+          name: Install node-red 
+          command: sudo npm install -g --unsafe-perm node-red
+      # -run: 
+      #   name: Clone Repo
+      #   command: git clone https://github.com/ARMmbed/node-red-contrib-mbed-cloud.git
+      # - run:
+      #     name: Install dependencies 
+      #     command: npm install
+      # - run:
+      #   name: Build nodes
+      #   command: npm run gulp  
