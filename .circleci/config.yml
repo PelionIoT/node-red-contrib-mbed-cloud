@@ -7,7 +7,7 @@ jobs:
       - checkout 
       - run:
           name: Install node-red
-          command: sudo npm install -g --unsafe-perm node-red
+          command: 'sudo npm install -g --unsafe-perm node-red'
       - run:
           name: Install npm dependencies
           command: npm install 
