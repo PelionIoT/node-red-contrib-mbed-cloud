@@ -2,10 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:8.0
+      - image: circleci/node:8.11.3
     steps:
       - checkout 
-      - run: apt-get install -y sudo
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
       - run:
           name: Install Node-RED
           command: sudo npm install -g --unsafe-perm node-red
@@ -14,4 +16,4 @@ jobs:
           command: npm install
       - run: 
           name: Build nodes
-          command: npm run gulp
+          command: npm run gulp 
