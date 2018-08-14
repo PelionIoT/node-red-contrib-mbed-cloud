@@ -1,13 +1,55 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/build
+    environment:
+      PIPENV_VENV_IN_PROJECT: TRUE
     docker:
-      - image: circleci/node:8.11.3
+      - image: circleci/python:3.7.0-stretch-node
     steps:
       - checkout 
       - run:
+          name: Update npm
+          command: sudo npm install -g npm@latest 
+      - run:
+          name: Update Python Installers 
+          command: sudo python -m pip install -U setuptools pip pipenv
+      - run:
+          name: Install Python Libraries 
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
           name: Install npm dependencies 
           command: npm install
+      - run:
+          name: Set version 
+          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
       - run: 
           name: Build nodes
           command: npm run gulp 
+  news:
+    working_directory: ~/build 
+    docker:
+      - image: circleci/python:3.7.0-stretch-node
+    steps:
+      - checkout
+      - run:
+          name: news Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv 
+      - run:
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: Set version 
+          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
+      - run:
+          name: Update changelog
+          command: pipenv towncrier --yes --name="" --version=$(cd../../ && auto_version --config=scripts/auto_version.toml)
+          working_directory: docs/news
+      - store_artifacts:
+          path: CHANGELOG.md
+workflows:
+  version: 2
+  node_red_workflow:
+    jobs:
+      - build
+      - news
