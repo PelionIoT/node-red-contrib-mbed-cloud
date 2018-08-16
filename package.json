@@ -50,6 +50,7 @@
       "list-metrics": "dist/list-metrics/list-metrics.js",
       "list-queries": "dist/list-queries/list-queries.js",
       "list-resources": "dist/list-resources/list-resources.js",
+      "nlf": "^2.0.0",
       "run-query": "dist/run-query/run-query.js",
       "set-resource-value": "dist/set-resource-value/set-resource-value.js",
       "start-campaign": "dist/start-campaign/start-campaign.js",
