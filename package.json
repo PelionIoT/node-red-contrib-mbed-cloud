@@ -18,7 +18,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "tpip": "node scripts/generate-tpip.js"
   },
   "devDependencies": {
     "@types/node": "^8.0.28",

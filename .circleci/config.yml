@@ -33,7 +33,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: news Update Python Installers
+          name: Update Python Installers
           command: sudo python -m pip install -U setuptools pip pipenv 
       - run:
           name: Install Python Libraries
@@ -47,9 +47,27 @@ jobs:
           working_directory: docs/news
       - store_artifacts:
           path: CHANGELOG.md
+  tpip:
+    working_directory: ~/build
+    docker:
+      - image: circleci/python:3.7.0-stretch-node-browsers
+    steps:
+      - checkout
+      - run:
+          name: Update npm
+          command: sudo npm install -g npm@latest
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      - run:
+          name: Build Third Party Intellectual Property file 
+          command: npm run tpip
+      - store_artifacts:
+          path: tpip.csv      
 workflows:
   version: 2
   node_red_workflow:
     jobs:
       - build
       - news
+      - tpip
