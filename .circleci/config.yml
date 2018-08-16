@@ -58,7 +58,7 @@ jobs:
           command: sudo npm install -g npm@latest
       - run:
           name: Install npm dependencies
-          command: npm install -g
+          command: npm install
       - run:
           name: Build Third Party Intellectual Property file 
           command: npm run tpip
