@@ -97,12 +97,4 @@ workflows:
       - build
       - news
       - tpip
-      - release_gate:
-          type: approval
-          filters:
-            branches: 
-              only: master
-          requires: build
-      - publish:
-          requies: 
-            - release_gate
+      - publish
