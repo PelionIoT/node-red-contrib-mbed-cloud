@@ -28,6 +28,7 @@
     "gulp-tslint": "^8.1.2",
     "gulp-typescript": "^3.2.2",
     "merge2": "^1.2.0",
+    "nlf": "^2.0.0",
     "tslint": "^5.7.0",
     "tslint-eslint-rules": "^4.1.1",
     "typescript": "^2.5.2"
@@ -50,7 +51,6 @@
       "list-metrics": "dist/list-metrics/list-metrics.js",
       "list-queries": "dist/list-queries/list-queries.js",
       "list-resources": "dist/list-resources/list-resources.js",
-      "nlf": "^2.0.0",
       "run-query": "dist/run-query/run-query.js",
       "set-resource-value": "dist/set-resource-value/set-resource-value.js",
       "start-campaign": "dist/start-campaign/start-campaign.js",
