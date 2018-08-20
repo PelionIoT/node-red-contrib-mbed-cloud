@@ -65,7 +65,7 @@ def main():
     subprocess.check_call(['npm', 'publish', '--tag=beta'])
     print('uploading to npm successful')
     # posting message to slack
-    body = {"text": ":checkered_flag: New version of :javascript: SDK released: {}".format(version)}
+    body = {"text": ":checkered_flag: New version of :Node-RED: SDK released: {}".format(version)}
     myurl = "https://hooks.slack.com/services/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"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')

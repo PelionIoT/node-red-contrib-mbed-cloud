@@ -20,9 +20,6 @@ jobs:
       - run:
           name: Install npm dependencies 
           command: npm install
-      - run:
-          name: Set version 
-          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
       - run: 
           name: Build nodes
           command: npm run gulp 
@@ -75,11 +72,17 @@ jobs:
       - attach_workspace:
           at: ./
       - run:
+          name: Build nodes 
+          command: npm run gulp
+      - run:
           name: Update Python Installers 
           command: sudo python -m pip install -U setuptools pip pipenv
       - run:
           name: Install Python Libraries
           command: pipenv run pip install -r scripts/requirements.txt 
+      - run:
+          name: Set version 
+          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
       - run:
           name: Generate changelog 
           command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && auto_version --config=scripts/auto_version.toml)
