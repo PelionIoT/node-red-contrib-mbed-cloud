@@ -8,6 +8,13 @@ a list of versions that have been released on **npm**.
 
 [//]: # (begin_release_notes)
 
+1.0.1 (2018-08-28)
+==================
+
+
+No significant changes.
+
+
 1.0.0 
 =============
 

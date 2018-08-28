@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-mbed-cloud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node-red implementation of the Mbed Cloud SDK for JavaScript",
   "homepage": "https://www.mbed.com",
   "author": "Alex Logan <alex.logan@arm.com>",
