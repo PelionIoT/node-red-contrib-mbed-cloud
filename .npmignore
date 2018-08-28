@@ -1,6 +1,8 @@
+.vscode
+.DS_Store
+.gitignore
 circle.yml
-DEVELOPMENT.md
 gulpfile.js
-README.md
-tslint.json
-.github
+tpip.csv
+news
+scripts
