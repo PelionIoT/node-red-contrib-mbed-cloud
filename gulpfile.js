@@ -77,3 +77,22 @@ gulp.task("watch", ["setWatch", "default"], function() {
 gulp.task("default", ["lint", "compile"]);
 
 gulp.task("local", ["lint", "move"]);
+
+// Create documentation
+gulp.task("doc", function() {
+    return gulp.src(srcFilesOnly)
+    .pipe(typedoc({
+        name: name,
+        readme: srcDir + "/documentation.md",
+        theme: srcDir + "/theme",
+        module: "commonjs",
+        target: "es6",
+        mode: "file",
+        out: docsDir,
+        excludeExternals: true,
+        excludePrivate: true,
+        hideGenerator: true,
+        toc: docsToc
+    }))
+    .on("error", handleError);
+});

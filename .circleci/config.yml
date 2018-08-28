@@ -1,0 +1,112 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/build
+    environment:
+      PIPENV_VENV_IN_PROJECT: TRUE
+    docker:
+      - image: circleci/python:3.7.0-stretch-node
+    steps:
+      - checkout
+      - run:
+          name: Update npm
+          command: sudo npm install -g npm@latest
+      - run:
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
+      - run:
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      - run:
+          name: Build nodes
+          command: npm run gulp
+  news:
+    working_directory: ~/build
+    docker:
+      - image: circleci/python:3.7.0-stretch-node
+    steps:
+      - checkout
+      - run:
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
+      - run:
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: Set version
+          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
+      - run:
+          name: Update changelog
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run auto_version --config=scripts/auto_version.toml)
+          working_directory: docs/news
+      - store_artifacts:
+          path: CHANGELOG.md
+  tpip:
+    working_directory: ~/build
+    docker:
+      - image: circleci/python:3.7.0-stretch-node-browsers
+    steps:
+      - checkout
+      - run:
+          name: Update npm
+          command: sudo npm install -g npm@latest
+      - run:
+          name: Install npm dependencies
+          command: npm install
+      - run:
+          name: Build Third Party Intellectual Property file
+          command: npm run tpip
+      - store_artifacts:
+          path: tpip.csv
+  publish:
+    working_directory: ~/build
+    environment:
+      PIPENV_VENV_IN_PROJECT: TRUE
+    docker:
+      - image: circleci/python:3.7.0-stretch-node-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Build nodes
+          command: npm run gulp
+      - run:
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
+      - run:
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: Set version
+          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
+      - run:
+          name: Generate changelog
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run auto_version --config=scripts/auto_version.toml)
+          working_directory: docs/news
+      - run:
+          name: Tag and Release
+          command: |
+            echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+            pipenv run python scripts/tag_and_release.py
+
+workflows:
+  version: 2
+  node_red_workflow:
+    jobs:
+      - build
+      - news
+      - tpip
+      - release_gate:
+          type: approval
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
+      - publish:
+          requires:
+            - release_gate
