@@ -7,40 +7,40 @@ jobs:
     docker:
       - image: circleci/python:3.7.0-stretch-node
     steps:
-      - checkout 
+      - checkout
       - run:
           name: Update npm
-          command: sudo npm install -g npm@latest 
+          command: sudo npm install -g npm@latest
       - run:
-          name: Update Python Installers 
+          name: Update Python Installers
           command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          name: Install Python Libraries 
+          name: Install Python Libraries
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
-          name: Install npm dependencies 
+          name: Install npm dependencies
           command: npm install
-      - run: 
+      - run:
           name: Build nodes
-          command: npm run gulp 
+          command: npm run gulp
   news:
-    working_directory: ~/build 
+    working_directory: ~/build
     docker:
       - image: circleci/python:3.7.0-stretch-node
     steps:
       - checkout
       - run:
           name: Update Python Installers
-          command: sudo python -m pip install -U setuptools pip pipenv 
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
           name: Install Python Libraries
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
-          name: Set version 
+          name: Set version
           command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
       - run:
           name: Update changelog
-          command: pipenv run towncrier --yes --name="" --version=$(cd../../ && auto_version --config=scripts/auto_version.toml)
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && auto_version --config=scripts/auto_version.toml)
           working_directory: docs/news
       - store_artifacts:
           path: CHANGELOG.md
@@ -57,41 +57,41 @@ jobs:
           name: Install npm dependencies
           command: npm install
       - run:
-          name: Build Third Party Intellectual Property file 
+          name: Build Third Party Intellectual Property file
           command: npm run tpip
       - store_artifacts:
-          path: tpip.csv 
+          path: tpip.csv
   publish:
     working_directory: ~/build
     environment:
       PIPENV_VENV_IN_PROJECT: TRUE
-    docker: 
+    docker:
       - image: circleci/python:3.7.0-stretch-node-browsers
     steps:
-      - checkout 
+      - checkout
       - attach_workspace:
           at: ./
       - run:
-          name: Build nodes 
+          name: Build nodes
           command: npm run gulp
       - run:
-          name: Update Python Installers 
+          name: Update Python Installers
           command: sudo python -m pip install -U setuptools pip pipenv
       - run:
           name: Install Python Libraries
-          command: pipenv run pip install -r scripts/requirements.txt 
+          command: pipenv run pip install -r scripts/requirements.txt
       - run:
-          name: Set version 
+          name: Set version
           command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
       - run:
-          name: Generate changelog 
+          name: Generate changelog
           command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && auto_version --config=scripts/auto_version.toml)
           working_directory: docs/news
       - run:
-          name: Tag and Release 
+          name: Tag and Release
           command: |
             echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-            pipenv run python scripts/tag_and_release.py      
+            pipenv run python scripts/tag_and_release.py
 
 workflows:
   version: 2
@@ -101,12 +101,12 @@ workflows:
       - news
       - tpip
       - release_gate:
-          type: approval 
-          filters: 
+          type: approval
+          filters:
             branches:
               only: master
           requires:
             - build
       - publish:
           requires:
-            - release_gate 
+            - release_gate
