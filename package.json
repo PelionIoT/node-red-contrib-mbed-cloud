@@ -4,6 +4,8 @@
   "description": "Node-red implementation of the Mbed Cloud SDK for JavaScript",
   "homepage": "https://www.mbed.com",
   "author": "Alex Logan <alex.logan@arm.com>",
+  "is_published": false,
+  "is_locked": true,
   "license": "Apache-2.0",
   "types": "./types/index.d.ts",
   "repository": {
