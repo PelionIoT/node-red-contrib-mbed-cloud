@@ -37,7 +37,7 @@
     "typescript": "^2.5.2"
   },
   "dependencies": {
-    "mbed-cloud-sdk": "^1.2.11"
+    "mbed-cloud-sdk": "^2.0.6"
   },
   "node-red": {
     "nodes": {
@@ -57,8 +57,7 @@
       "run-query": "dist/run-query/run-query.js",
       "set-resource-value": "dist/set-resource-value/set-resource-value.js",
       "start-campaign": "dist/start-campaign/start-campaign.js",
-      "stop-campaign": "dist/stop-campaign/stop-campaign.js",
-      "add-firmware-image": "dist/add-firmware-image/add-firmware-image.js"
+      "stop-campaign": "dist/stop-campaign/stop-campaign.js"
     }
   }
 }
