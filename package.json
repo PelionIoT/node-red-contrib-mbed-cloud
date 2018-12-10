@@ -12,6 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/ARMmbed/node-red-contrib-mbed-cloud.git"
   },
+  "files": [
+    "dist",
+    "types"
+  ],
   "keywords": [
     "mbed",
     "node-red"
