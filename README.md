@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/ARMmbed/node-red-contrib-mbed-cloud/tree/master.svg?style=svg)](https://circleci.com/gh/ARMmbed/node-red-contrib-mbed-cloud/tree/master)
+[![npm version](https://badge.fury.io/js/node-red-contrib-mbed-cloud.svg)](https://badge.fury.io/js/node-red-contrib-mbed-cloud)
+
 # Mbed Cloud plugin for Node-RED
 
 Node-RED nodes to talk to mbed-cloud. This will enable various 3rd party services that already have node-RED workflows to connect to Mbed Cloud.
