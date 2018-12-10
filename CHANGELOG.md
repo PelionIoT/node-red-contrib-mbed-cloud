@@ -8,6 +8,18 @@ a list of versions that have been released on **npm**.
 
 [//]: # (begin_release_notes)
 
+1.0.2 (2018-12-10)
+==================
+
+     ### Bugfixes
+
+  - Remove extraneous node definition for 'addFirmwareImage' (#1)
+
+     ### Improved Documentation
+
+  - Update documentation to reflect release to NPM (#1)
+
+
 1.0.1 (2018-08-28)
 ==================
 
