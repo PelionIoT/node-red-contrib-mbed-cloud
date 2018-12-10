@@ -43,7 +43,7 @@ def main():
 
     and commits changes to news files
     """
-    version = subprocess.check_output(['pipenv', 'run', 'auto_version', '--config=scripts/auto_version.toml']).decode().strip()
+    version = subprocess.check_output(['pipenv', 'run', 'auto_version', '--config=scripts/auto_version.toml', '--release']).decode().strip()
     print('preparing environment')
     url = subprocess.check_output(['git', 'remote', 'get-url', 'origin'])
     new_url = git_url_ssh_to_https(url.decode())

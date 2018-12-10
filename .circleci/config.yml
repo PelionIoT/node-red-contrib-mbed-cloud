@@ -40,7 +40,7 @@ jobs:
           command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
       - run:
           name: Update changelog
-          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run auto_version --config=scripts/auto_version.toml)
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run auto_version --config=scripts/auto_version.toml --release)
           working_directory: docs/news
       - store_artifacts:
           path: CHANGELOG.md
@@ -85,10 +85,10 @@ jobs:
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
           name: Set version
-          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news
+          command: pipenv run auto_version --config=scripts/auto_version.toml --bump=patch --news --release
       - run:
           name: Generate changelog
-          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run auto_version --config=scripts/auto_version.toml)
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run auto_version --config=scripts/auto_version.toml --release)
           working_directory: docs/news
       - run:
           name: Tag and Release
