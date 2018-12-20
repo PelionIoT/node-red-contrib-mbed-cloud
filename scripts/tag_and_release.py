@@ -16,6 +16,7 @@
 # --------------------------------------------------------------------------
 """Part of the CI process"""
 
+import sys
 import os
 import subprocess
 import urllib.request
@@ -65,8 +66,20 @@ def main():
     subprocess.check_call(['npm', 'publish'])
     print('uploading to npm successful')
     # posting message to slack
-    body = {"text": ":checkered_flag: New version of :node-red: Node-RED SDK released: {}".format(version)}
-    myurl = "https://hooks.slack.com/services/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"
+    post_to_slack(version)
+
+def post_to_slack(version):
+    """Post a message to the SDK slack channel.
+    This uses an incoming webhook which is made available by a pre-configured Slack App.
+    """
+    print("Posting a message to Slack")
+    body = {
+        "channel": "#isg-dm-sdk",
+        "username": "SDK Release Announcement",
+        "icon_emoji": ":node-red:",
+        "text": ":checkered_flag: New version of :node-red: Node-RED SDK released: {}".format(version),
+    }
+    myurl = os.getenv('SLACK_NOTIFICATION_WEBHOOK')
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
     jsondata = json.dumps(body)
@@ -74,6 +87,9 @@ def main():
     req.add_header('Content-Length', len(jsondataasbytes))
     response = urllib.request.urlopen(req, jsondataasbytes)
 
-
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'slack':
+            post_to_slack(sys.argv[2])
+    else:
+        main()
